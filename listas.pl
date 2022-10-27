@@ -55,3 +55,40 @@ consecutivosNaLista([Elem, Elem|_], Elem).
 % passo
 consecutivosNaLista([_|T], Elem) :-
     consecutivosNaLista(T, Elem).
+
+% exercicio 10
+% Contar o tamanho da lista. Ex:
+% tamLista(Lista, Tam).
+% ?- tamLista([3,5,8,2,4,9], Tam). -> Tam = 6.
+
+% base 
+tamLista(Lista, Tam) :-
+    tamLista(Lista, Tam, 0).
+
+% passo
+tamLista([], Count, Count).
+
+tamLista([_|T], Tam, Count) :-
+    Aux is Count + 1,
+    tamLista(T, Tam, Aux).
+
+
+% exercicio 11
+
+% removerItemDaLista(Lista, Item, NovaLista).
+% ?- removerItemDaLista([3,5,8,2,4,9], 4, NovaLista). -> NovaLista = [3,5,8,2,9].
+
+% base
+removerItemDaLista(Lista, Item, NovaLista) :-
+    removerItemDaLista(Lista, Item, NovaLista, []).
+
+% passo
+removerItemDaLista([], _, Controle, Controle).
+
+removerItemDaLista([H|T], Item, NovaLista, Controle) :-
+    H = Item,
+    removerItemDaLista(T, Item, NovaLista, Controle).
+
+removerItemDaLista([H|T], Item, NovaLista, Controle) :-
+    Aux = [H|Controle],
+    removerItemDaLista(T, Item, NovaLista, Aux).
