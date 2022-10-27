@@ -17,19 +17,29 @@ membro([_|R], Elem) :- membro(R, Elem).
 % base:
 itemDaLista([H|_], H, 0). 
 % passo
-itemDaLista([_|T], H, N) :-
+itemDaLista([_|T], Elem, N) :-
     Aux is N - 1,
-    itemDaLista(T, H, Aux).
+    itemDaLista(T, Elem, Aux).
 
+% contarElemDaLista(Lista, Elem, Qnt).
+% ?- contarElemDaLista([3,2,3,1,3,8,3], 3, Qnt).
+% Qnt = 4.
 
-buscaItem([A|_], Elem, 1, 1) :-
-    Elem is A.
+% exercicio 8
 
-% passo:
-buscaItem([_|R], Elem, N, Aux):-
-    Aux > 1,
-    Aux is N - 1,
-    buscaItem(R, Elem, N, Aux).
+%base
+% base:
+contarElemDaLista(Lista, Elem, Qnt) :- 
+    contarElemDaLista(Lista, Elem, Qnt, 0). 
 
+% passo
+contarElemDaLista([], _, Count, Count) :- !.
 
+contarElemDaLista([H|T], Elem, Qnt, Count) :- 
+    H = Elem,
+    Aux is Count + 1,
+    contarElemDaLista(T, Elem, Qnt, Aux).
+
+contarElemDaLista([_|T], Elem, Qnt, Count) :- 
+    contarElemDaLista(T, Elem, Qnt, Count).
 
