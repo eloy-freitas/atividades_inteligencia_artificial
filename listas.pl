@@ -22,8 +22,8 @@ itemDaLista([_|T], Elem, N) :-
     itemDaLista(T, Elem, Aux).
 
 % contarElemDaLista(Lista, Elem, Qnt).
-% ?- contarElemDaLista([3,2,3,1,3,8,3], 3, Qnt).
-% Qnt = 4.
+% ?- contarElemDaLista([3,2,3,1,3,8,3], 3, Qnt). -> Qnt = 4.
+
 
 % exercicio 8
 
@@ -43,3 +43,15 @@ contarElemDaLista([H|T], Elem, Qnt, Count) :-
 contarElemDaLista([_|T], Elem, Qnt, Count) :- 
     contarElemDaLista(T, Elem, Qnt, Count).
 
+% exercicio 9
+
+% Encontrar números consecutivos em uma lista. Ex:
+% consecutivosNaLista(Lista, Elem).
+% ?- consecutivosNaLista([1,2,3,3,4], 3). -> true.
+
+% base
+consecutivosNaLista([Elem, Elem|_], Elem).
+
+% passo
+consecutivosNaLista([_|T], Elem) :-
+    consecutivosNaLista(T, Elem).
