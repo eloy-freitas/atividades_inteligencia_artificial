@@ -167,14 +167,14 @@ somarLista([H|T], Soma) :-
 % indiceDe(Num, Lista, Idx).
 % ?- indiceDe(7, [4,7,2,3,5,8], Idx). -> Idx = 2.
 
-% indiceDe(Num, Lista, Idx) :-
-%     indiceDe(Num, Lista, Idx, 1).
-% 
-% indiceDe(H, [H|_], Count, Count).
-% 
-% indiceDe(Num, [_|T], Idx, Count) :- 
-%     Aux is Count + 1,
-%     indiceDe(Num, T, Idx, Aux). 
+indiceDe(Num, Lista, Idx) :-
+    indiceDe(Num, Lista, Idx, 1).
+
+indiceDe(H, [H|_], Count, Count).
+
+indiceDe(Num, [_|T], Idx, Count) :- 
+    Aux is Count + 1,
+    indiceDe(Num, T, Idx, Aux). 
 
 % exercicio 18
 
@@ -183,13 +183,32 @@ somarLista([H|T], Soma) :-
 % ?- indiceDe(7, [4,7,2,3,5,8], Idx). -> Idx = 5.
 
 
-indiceDe(Num, Lista, Idx) :-
-    indiceDe(Num, Lista, Idx, 0).
+% indiceDe(Num, Lista, Idx) :-
+%     indiceDe(Num, Lista, Idx, 1).
+% 
+% indiceDe(H, [], Count, Count).
+% 
+% indiceDe(Num, [_|T], Idx, Count) :- 
+%     Aux is Count + 1,
+%     indiceDe(Num, T, Idx, Aux). 
 
-indiceDe(_, [], _, 0).
 
-indiceDe(Num, [_|T], Idx, Count) :- 
-    indiceDe(Num, T, Idx, Aux),
-    Count is Aux + 1.
+% exercicio 19
 
-indiceDe(H, [H|_], Count, Count).
+% Encontrar qual é o índice que tem o menor número da lista.
+% indiceMenorDaLista(Lista, Idx).
+% ?- indiceMenorDaLista([4,7,2,1,5,8], Idx). -> Idx = 4.
+
+indiceMenorDaLista([H|T], Idx) :-
+    indiceMenorDaLista([H|T], Idx, H, 1).
+
+indiceMenorDaLista([H|_], Count, H, Count).
+
+indiceMenorDaLista([H|T], Idx, Menor, Count) :-
+    H =< Menor,
+    Aux is Count + 1,
+    indiceMenorDaLista(T, Idx, H, Aux).
+
+indiceMenorDaLista(T, Idx, Menor, Count) :-
+    Aux is Count + 1,
+    indiceMenorDaLista(T, Idx, Menor, Aux).
