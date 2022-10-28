@@ -147,3 +147,49 @@ menorElemDaLista([H|T], Elem, Aux1) :-
 menorElemDaLista([_|T], Elem, Aux1) :-
     menorElemDaLista(T, Elem, Aux1). 
 
+% exercicio 16
+
+% Somar todos os número da lista.
+% somarLista(Lista, Soma).
+% ?- somarLista([3,2,3,1,3,8], Soma). -> Soma = 20.
+
+% base
+somarLista([], 0).
+
+% passo
+somarLista([H|T], Soma) :-
+    somarLista(T, Aux),
+    Soma is Aux + H.
+
+% exercicio 17
+
+% Encontrar o índice de um número (da esquerda para a direita). Ex:
+% indiceDe(Num, Lista, Idx).
+% ?- indiceDe(7, [4,7,2,3,5,8], Idx). -> Idx = 2.
+
+% indiceDe(Num, Lista, Idx) :-
+%     indiceDe(Num, Lista, Idx, 1).
+% 
+% indiceDe(H, [H|_], Count, Count).
+% 
+% indiceDe(Num, [_|T], Idx, Count) :- 
+%     Aux is Count + 1,
+%     indiceDe(Num, T, Idx, Aux). 
+
+% exercicio 18
+
+% Encontrar o índice de um número (da direita para a esquerda). Ex:
+% indiceDe(Num, Lista, Idx).
+% ?- indiceDe(7, [4,7,2,3,5,8], Idx). -> Idx = 5.
+
+
+indiceDe(Num, Lista, Idx) :-
+    indiceDe(Num, Lista, Idx, 0).
+
+indiceDe(_, [], _, 0).
+
+indiceDe(Num, [_|T], Idx, Count) :- 
+    indiceDe(Num, T, Idx, Aux),
+    Count is Aux + 1.
+
+indiceDe(H, [H|_], Count, Count).
