@@ -104,3 +104,46 @@ ultimoElemDaLista([H|[]], H).
 
 ultimoElemDaLista([_|T], Elem) :-
     ultimoElemDaLista(T, Elem).
+
+% exercicio 14
+
+% maiorElemDaLista(Lista, Elem).
+% ?- maiorElemDaLista([3,2,3,1,3,8], Elem). -> Elem = 8.
+
+% base
+maiorElemDaLista([H|T], Elem) :- 
+    maiorElemDaLista([H|T], Elem, H).
+
+% passo
+maiorElemDaLista([], Aux1, Aux1).
+
+maiorElemDaLista([H|T], Elem, Aux1) :-
+    H >= Aux1,
+    Aux2 is H,
+    maiorElemDaLista(T, Elem, Aux2). 
+
+maiorElemDaLista([_|T], Elem, Aux1) :-
+    maiorElemDaLista(T, Elem, Aux1). 
+
+
+% exercicio 15
+
+% menorElemDaLista(Lista, Elem).
+% ?- menorElemDaLista([3,2,3,1,3,8], Elem). -> Elem = 1.
+
+
+% base
+menorElemDaLista([H|T], Elem) :- 
+    menorElemDaLista([H|T], Elem, H).
+
+% passo
+menorElemDaLista([], Aux1, Aux1).
+
+menorElemDaLista([H|T], Elem, Aux1) :-
+    H =< Aux1,
+    Aux2 is H,
+    menorElemDaLista(T, Elem, Aux2). 
+
+menorElemDaLista([_|T], Elem, Aux1) :-
+    menorElemDaLista(T, Elem, Aux1). 
+
