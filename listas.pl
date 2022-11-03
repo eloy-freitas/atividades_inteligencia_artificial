@@ -200,15 +200,18 @@ indiceDe(Num, [_|T], Idx, Count) :-
 % ?- indiceMenorDaLista([4,7,2,1,5,8], Idx). -> Idx = 4.
 
 indiceMenorDaLista([H|T], Idx) :-
-    indiceMenorDaLista([H|T], Idx, H, 1).
+    indiceMenorDaLista([H|T], Idx, H, 1, 1).
 
-indiceMenorDaLista([H|_], Count, H, Count).
 
-indiceMenorDaLista([H|T], Idx, Menor, Count) :-
+indiceMenorDaLista([], MenorIdx, _, MenorIdx, _).
+
+
+indiceMenorDaLista([H|T], Idx, Menor, _, Count) :-
     H =< Menor,
     Aux is Count + 1,
-    indiceMenorDaLista(T, Idx, H, Aux).
+    AuxMenorIdx is Aux,
+    indiceMenorDaLista(T, Idx, H, AuxMenorIdx, Aux).
 
-indiceMenorDaLista(T, Idx, Menor, Count) :-
+indiceMenorDaLista([_|T], Idx, Menor, AuxMenorIdx, Count) :-
     Aux is Count + 1,
-    indiceMenorDaLista(T, Idx, Menor, Aux).
+    indiceMenorDaLista(T, Idx, Menor, AuxMenorIdx, Aux).
