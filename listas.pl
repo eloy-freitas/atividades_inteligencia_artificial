@@ -193,3 +193,21 @@ indiceDe(Num, [_|T], Idx, Count) :-
     Count is Aux + 1.
 
 indiceDe(H, [H|_], Count, Count).
+
+% index do menor elemento da lista
+
+% base
+menorElemDaLista(Lista, Index) :- 
+    menorElemDaLista(Lista, Index, Menor, 1).
+
+menorElemDaLista([], Count, Menor, Count).
+
+menorElemDaLista([H|T], Index, Menor, Count) :-
+    H =< Menor,
+    Aux1 is H,
+    Aux2 is Count + 1,
+    menorElemDaLista(T, Index, Aux1, Aux2). 
+
+menorElemDaLista([_|T], Index, Menor, Count) :-
+    Aux1 is Count + 1,
+    menorElemDaLista(T, Index, Menor, Aux1). 
